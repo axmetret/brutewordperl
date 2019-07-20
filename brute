@@ -1,0 +1,20 @@
+#!/usr/bin/env perl
+#
+use strict;
+use warnigs FATAL => 'all';
+use utf8;
+
+sub main { 
+         my $ciphertext = shift or return 1;
+         my $a_code = ord('a');
+         my $abc_size = ord('z') - $a_code + 1;
+         for (my $i = 0; $i < $abc_size; ++$i) {
+                  print "$i: ";
+                  foreach my $char (split //, $ciphertext) { 
+                          print chr($a_code + (ord($char) - $a_code + $i) % $abc_size);
+                  }
+                  print "/n";
+        }
+        return 0;
+}
+exit main(shift) unless caller;
